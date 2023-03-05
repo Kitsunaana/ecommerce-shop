@@ -10,8 +10,10 @@ module.exports = (error, request, response, next) => {
     }
 
     if (error.code === 11000) {
-        const fieldName = error.message.split('.$')[1].split('_')[0]
+        const fieldName = error.message.split('index: ')[1].split('_')[0]
         const message = `Duplicate value entered in ${fieldName}`
         error = new ErrorHandler(message, 409)
     }
+
+    response.status(error.statusCode).json({ success: false, message: error.message })
 }
