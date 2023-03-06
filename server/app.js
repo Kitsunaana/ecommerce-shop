@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const errorMiddleware = require('./middleware/error')
 const category = require('./routes/categoryRoute')
+const brand = require('./routes/brandRoute')
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/api/v1', category)
+app.use('/api/v1', brand)
 
 app.use(errorMiddleware)
 

@@ -9,13 +9,13 @@ exports.addCategory = asyncHandler(async(request, response, next) => {
 
 exports.getCategories = asyncHandler(async(request, response, next) => {
     const categories = await Category.find()
-    response.status(201).json({ success: true, categories })
+    response.status(200).json({ success: true, categories })
 })
 
 exports.getCategoryDetails = asyncHandler(async(request, response, next) => {
     const category = await Category.findById(request.params.id)
     if (!category) return next(new ErrorHandler('Category not found.', 404))
-    response.status(201).json({ success: true, category })
+    response.status(200).json({ success: true, category })
 })
 
 exports.updateCategory = asyncHandler(async(request, response, next) => {
@@ -29,5 +29,5 @@ exports.deleteCategory = asyncHandler(async(request, response, next) => {
     let category = await Category.findById(request.params.id)
     if (!category) return next(new ErrorHandler('Category not found.', 404))
     await category.remove()
-    response.status(201).json({ success: true })
+    response.status(200).json({ success: true })
 })
